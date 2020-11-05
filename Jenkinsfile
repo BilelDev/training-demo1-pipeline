@@ -1,13 +1,31 @@
-node{
- stage('SCM Checkout')
-    {
-        git credentialsId: 'f83ee8b5-b4b2-420e-892b-d341e313c937', url: 'https://github.com/BilelDev/training-demo1-pipeline.git'
-    }
+pipeline {
+    agent none
+    stages {
+	
+	stage('Non-Parallel Stage') {
+	    agent {
+                        label "master"
+                }
+        steps {
+                echo 'This stage will be executed first'
+                }
+        }
+
+	stage('Build On Master') {
+                    agent {
+                        label "master"
+                    }
+                    steps {
+						echo "Build on Master"
+						bat 'Build.bat'
+					}
+        }
     
-    stage('Run Docker Compose File')
-    {
-        sh 'docker-compose build'
-      
+		
+	
     }
-  
 }
+
+
+
+
