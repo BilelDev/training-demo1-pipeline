@@ -1,8 +1,10 @@
-node{
-
+pipeline {
+    agent none
+    stages {
     
     stage('Run Docker Compose File')
     {
+	echo "Test on Master"
         bat 'build.bat'
     }
   stage('PUSH image to Docker Hub')
@@ -22,4 +24,6 @@ node{
             // sh 'docker push upasanatestdocker/mysql'
           
     }
+}
+}
 }
