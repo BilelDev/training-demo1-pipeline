@@ -3,8 +3,7 @@ node{
     
     stage('Run Docker Compose File')
     {
-        bat 'docker-compose build'
-        bat 'docker-compose up -d'
+        bat 'build.bat'
     }
   stage('PUSH image to Docker Hub')
     {
